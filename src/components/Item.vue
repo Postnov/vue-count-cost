@@ -18,7 +18,7 @@
             v-model="costPerClient"/>
 
         <div class="price">
-            <span class="item__sum-one">{{ costTotal }}</span>
+            <span class="item__sum-one">{{ costTotal || 0.00 }}</span>
             <span> руб.</span>
         </div>
 
@@ -47,17 +47,31 @@ export default {
             id: this.item.id
         }
     },
-    updated() {
-        let {costPerClient, cost, label, value, costTotal, id } = this;
+    methods: {
+        updateItem() {
+            let {costPerClient, cost, label, value, costTotal, id } = this;
 
-        this.$emit('updateItem', {
-            costPerClient,
-            cost,
-            label,
-            value,
-            costTotal,
-            id
-        });
+            if (+cost !== 0 && +value !== 0 && costPerClient !== 0) {
+                costTotal = (+cost / +value) * +costPerClient;
+                costTotal = costTotal.toFixed(2);
+
+                this.costTotal = costTotal;
+            }
+
+
+
+            this.$emit('updateItem', {
+                costPerClient,
+                cost,
+                label,
+                value,
+                costTotal: costTotal || 0,
+                id
+            });
+        }
+    },
+    updated() {
+      this.updateItem();
     }
 }
 </script>
