@@ -6,6 +6,7 @@
         <SidePanel
             v-on:addItem="createItem(maxId++)"
             :costTotal="costTotal"
+            :lengthItems="items.length"
             />
         <Footer />
     </div>

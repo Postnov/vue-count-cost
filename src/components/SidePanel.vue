@@ -6,10 +6,10 @@
                 class="add-item">+</button>
         </div>
         <div class="side-panel__item">
-            <span>0</span>пунктов
+            <span>{{ lengthItems }}</span>пунктов
         </div>
         <div class="side-panel__item ">
-            <span>{{costTotal}}</span> руб. на единицу
+            <span>{{ costTotal }}</span> руб. на единицу
         </div>
     </aside>
 </template>
@@ -18,7 +18,7 @@
 <script>
 export default {
     name: 'Side-panel',
-    props: ['costTotal']
+    props: ['costTotal', 'lengthItems']
 }
 </script>
 
