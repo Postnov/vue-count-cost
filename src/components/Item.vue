@@ -2,19 +2,23 @@
     <div class="item">
         <input
             type="text"
-            placeholder="Наименование" />
+            placeholder="Наименование"
+            v-model="label"/>
         <input
             type="number"
-            placeholder="Стоимость" />
+            placeholder="Стоимость"
+            v-model="cost"/>
         <input
             type="number"
-            placeholder="Объем" />
+            placeholder="Объем"
+            v-model="value"/>
         <input
             type="number"
-            placeholder="Трата на единицу" />
+            placeholder="Трата на единицу"
+            v-model="costPerClient"/>
 
         <div class="price">
-            <span class="item__sum-one">0</span>
+            <span class="item__sum-one">{{ costTotal }}</span>
             <span> руб.</span>
         </div>
 
@@ -32,7 +36,29 @@
 
 <script>
 export default {
+    props: ['item'],
+    data() {
+        return {
+            label: this.item.label,
+            cost: this.item.cost,
+            value: this.item.value,
+            costPerClient: this.item.costPerClient,
+            costTotal: this.item.costTotal,
+            id: this.item.id
+        }
+    },
+    updated() {
+        let {costPerClient, cost, label, value, costTotal, id } = this;
 
+        this.$emit('updateItem', {
+            costPerClient,
+            cost,
+            label,
+            value,
+            costTotal,
+            id
+        });
+    }
 }
 </script>
 

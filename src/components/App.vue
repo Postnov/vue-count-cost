@@ -1,7 +1,11 @@
 <template>
     <div class="app">
-        <ListItems />
-        <SidePanel />
+        <ListItems
+            :items="items"
+            v-on:updateItem="updateItem"/>
+        <SidePanel
+            v-on:addItem="createItem(maxId++)"
+            />
         <Footer />
     </div>
 </template>
@@ -14,9 +18,35 @@ import ListItems from './ListItems.vue';
 
 
 export default {
+    name: 'App',
     data() {
         return {
-            msg: 'hello'
+            maxId: 10,
+            items: []
+        }
+    },
+    methods: {
+        createItem(id)  {
+            this.items.push({
+                label: '',
+                cost: '',
+                value: '',
+                costPerClient: '',
+                costTotal: '',
+                id
+            })
+        },
+
+        updateItem(newItem) {
+            this.items.map((el) => {
+                if (el.id == newItem.id) {
+                    el.cost = newItem.cost;
+                    el.costPerClient = newItem.costPerClient;
+                    el.label = newItem.label;
+                    el.costTotal = newItem.costTotal;
+                    el.value = newItem.value;
+                }
+            })
         }
     },
     components: {

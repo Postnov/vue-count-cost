@@ -1,7 +1,10 @@
 <template>
-    <ul class="list-items">
-        <li>
-            <Item />
+    <ul class="list-items" >
+        <li v-for="item in items" :key="item.id" >
+            <Item
+                :item="item"
+                v-on:updateItem="updateItem"
+            />
         </li>
     </ul>
 </template>
@@ -11,6 +14,12 @@
 import Item from './Item.vue';
 
 export default {
+    props: ['items'],
+    methods: {
+        updateItem(newItem) {
+            this.$emit('updateItem', newItem)
+        }
+    },
     components: {
         Item
     }
