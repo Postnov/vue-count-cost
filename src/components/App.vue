@@ -5,6 +5,7 @@
             v-on:updateItem="updateItem"/>
         <SidePanel
             v-on:addItem="createItem(maxId++)"
+            :costTotal="costTotal"
             />
         <Footer />
     </div>
@@ -22,6 +23,7 @@ export default {
     data() {
         return {
             maxId: 10,
+            costTotal: 0,
             items: []
         }
     },
@@ -47,6 +49,18 @@ export default {
                     el.value = newItem.value;
                 }
             })
+
+            this.countAll();
+        },
+
+        countAll() {
+            let total = 0;
+
+            this.items.forEach((el) => {
+                total += +el.costTotal;
+            })
+
+            this.costTotal = total;
         }
     },
     components: {

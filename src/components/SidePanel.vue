@@ -9,7 +9,7 @@
             <span>0</span>пунктов
         </div>
         <div class="side-panel__item ">
-            <span>0</span> руб. на единицу
+            <span>{{costTotal}}</span> руб. на единицу
         </div>
     </aside>
 </template>
@@ -17,7 +17,8 @@
 
 <script>
 export default {
-
+    name: 'Side-panel',
+    props: ['costTotal']
 }
 </script>
 
