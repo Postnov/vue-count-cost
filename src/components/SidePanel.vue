@@ -1,7 +1,9 @@
 <template>
     <aside class="side-panel">
         <div class="side-panel__item ">
-            <button class="add-item">+</button>
+            <button
+                @click="$emit('addItem')"
+                class="add-item">+</button>
         </div>
         <div class="side-panel__item">
             <span>0</span>пунктов
