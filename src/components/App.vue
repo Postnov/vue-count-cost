@@ -2,7 +2,8 @@
     <div class="app">
         <ListItems
             :items="items"
-            v-on:updateItem="updateItem"/>
+            v-on:updateItem="updateItem"
+            v-on:removeItem="removeItem"/>
         <SidePanel
             v-on:addItem="createItem(maxId++)"
             :costTotal="costTotal"
@@ -38,6 +39,14 @@ export default {
                 costTotal: '',
                 id
             })
+        },
+
+        removeItem(id) {
+            this.items = this.items.filter((el) => {
+                return el.id !== id;
+            });
+
+            this.countAll();
         },
 
         updateItem(newItem) {

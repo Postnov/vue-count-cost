@@ -4,6 +4,7 @@
             <Item
                 :item="item"
                 v-on:updateItem="updateItem"
+                v-on:removeItem="removeItem"
             />
         </li>
     </ul>
@@ -18,6 +19,9 @@ export default {
     methods: {
         updateItem(newItem) {
             this.$emit('updateItem', newItem)
+        },
+        removeItem(id) {
+            this.$emit('removeItem', id)
         }
     },
     components: {
